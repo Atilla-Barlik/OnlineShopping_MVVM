@@ -1,10 +1,14 @@
 ﻿using eShopOnContainers.Core;
+using eShopOnContainers.Core.Models;
 using eShopOnContainers.Core.Services.Location;
+using eShopOnContainers.Core.Services.ProductService;
 using eShopOnContainers.Core.Services.Settings;
 using eShopOnContainers.Core.Services.Theme;
+using eShopOnContainers.Core.ViewModels;
 using eShopOnContainers.Core.ViewModels.Base;
 using eShopOnContainers.Services;
 using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading;
@@ -17,11 +21,14 @@ namespace eShopOnContainers
     public partial class App : Application
     {
         ISettingsService _settingsService;
-
+       
         public App()
         {
             InitializeComponent();
-
+            ProductModel.list = new ObservableCollection<ProductItem>();
+            ProductModel productModel = new ProductModel();
+            ProductList productList = new ProductList();
+            productList.AddProducts();
             InitApp();
 
             MainPage = new AppShell ();

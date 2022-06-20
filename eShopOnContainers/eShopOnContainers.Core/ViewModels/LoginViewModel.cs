@@ -67,7 +67,7 @@ namespace eShopOnContainers.Core.ViewModels
             {
                 //await Application.Current.MainPage.Navigation.PushAsync(new AboutPage());
                 //await Shell.Current.GoToAsync("..");
-                await Shell.Current.GoToAsync("//Main/Catalog");
+                await Shell.Current.GoToAsync("//Main/MainPage");
 
             }
             else

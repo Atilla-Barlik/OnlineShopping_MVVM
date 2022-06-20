@@ -31,7 +31,7 @@
     </FlyoutItem>
 
     <TabBar Route="Main">
-        <ShellContent Title="CATALOG" Route="Catalog" Icon="{StaticResource CatalogIconImageSource}" ContentTemplate="{DataTemplate views:CatalogView}" />
+        <ShellContent Title="MainPage" Route="MainPage" Icon="{StaticResource CatalogIconImageSource}" ContentTemplate="{DataTemplate views:MainPage}" />
         <ShellContent Title="PROFILE" Route="Profile" Icon="{StaticResource ProfileIconImageSource}" ContentTemplate="{DataTemplate views:ProfileView}" />
     </TabBar>
 </Shell>
