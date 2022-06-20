@@ -1,4 +1,5 @@
 ﻿using eShopOnContainers.Core.Extensions;
+using eShopOnContainers.Core.Interfaces;
 using eShopOnContainers.Core.Models.User;
 using eShopOnContainers.Core.Services.Identity;
 using eShopOnContainers.Core.Services.OpenUrl;
@@ -8,6 +9,7 @@ using eShopOnContainers.Core.ViewModels.Base;
 using IdentityModel.Client;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -17,255 +19,61 @@ namespace eShopOnContainers.Core.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private ValidatableObject<string> _userName;
-        private ValidatableObject<string> _password;
-        private bool _isMock;
-        private bool _isValid;
-        private bool _isLogin;
-        private string _authUrl;
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string deneme { get; set; }
 
-        private ISettingsService _settingsService;
-        private IOpenUrlService _openUrlService;
-        private IIdentityService _identityService;
+        public Command checkValue { get; set; }
+        public Command signIn { get; set; }
 
         public LoginViewModel()
         {
-            _settingsService = DependencyService.Get<ISettingsService> ();
-            _openUrlService = DependencyService.Get<IOpenUrlService> ();
-            _identityService = DependencyService.Get<IIdentityService> ();
 
-            _userName = new ValidatableObject<string>();
-            _password = new ValidatableObject<string>();
 
-            InvalidateMock();
-            AddValidations();
+            checkValue = new Command(() =>
+            {
+                deneme = Email + " " + Password;
+                Register();
+
+                OnPropertyChanged(nameof(deneme));
+            });
+
+            signIn = new Command(() =>
+            {
+                Login();
+            });
+
         }
 
-        public ValidatableObject<string> UserName
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string PropertyName)
         {
-            get => _userName;
-            set
-            {
-                _userName = value;
-                RaisePropertyChanged(() => UserName);
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public ValidatableObject<string> Password
+        public async void Register()
         {
-            get => _password;
-            set
-            {
-                _password = value;
-                RaisePropertyChanged(() => Password);
-            }
+            var fblogin = DependencyService.Get<IFirebase>();
+            string token = await fblogin.Register(Email, Password);
+
+            await Application.Current.MainPage.DisplayAlert("Kayıt Durumu", token, "OK");
+
         }
-
-        public bool IsMock
+        public async void Login()
         {
-            get => _isMock;
-            set
+            var fblogin = DependencyService.Get<IFirebase>();
+            string token = await fblogin.Login(Email, Password);
+            if (token.Length > 500)
             {
-                _isMock = value;
-                RaisePropertyChanged(() => IsMock);
-            }
-        }
+                //await Application.Current.MainPage.Navigation.PushAsync(new AboutPage());
+                //await Shell.Current.GoToAsync("..");
+                await Shell.Current.GoToAsync("//Main/Catalog");
 
-        public bool IsValid
-        {
-            get => _isValid;
-            set
-            {
-                _isValid = value;
-                RaisePropertyChanged(() => IsValid);
-            }
-        }
-
-        public bool IsLogin
-        {
-            get => _isLogin;
-            set
-            {
-                _isLogin = value;
-                RaisePropertyChanged(() => IsLogin);
-            }
-        }
-
-        public string LoginUrl
-        {
-            get => _authUrl;
-            set
-            {
-                _authUrl = value;
-                RaisePropertyChanged(() => LoginUrl);
-            }
-        }
-
-        public ICommand MockSignInCommand => new Command(async () => await MockSignInAsync());
-
-        public ICommand SignInCommand => new Command(async () => await SignInAsync());
-
-        public ICommand RegisterCommand => new Command(async () => await RegisterAsync());
-
-        public ICommand NavigateCommand => new Command<string>(async (url) => await NavigateAsync(url));
-
-        public ICommand SettingsCommand => new Command(async () => await SettingsAsync());
-
-        public ICommand ValidateUserNameCommand => new Command(() => ValidateUserName());
-
-        public ICommand ValidatePasswordCommand => new Command(() => ValidatePassword());
-
-        public override Task InitializeAsync (IDictionary<string, string> query)
-        {
-            var logout = query.GetValueAsBool ("Logout");
-
-            if(logout.ContainsKeyAndValue && logout.Value == true)
-            {
-                Logout ();
-            }
-
-            return Task.CompletedTask;
-        }
-
-        private async Task MockSignInAsync()
-        {
-            IsBusy = true;
-            IsValid = true;
-            bool isValid = Validate();
-            bool isAuthenticated = false;
-
-            if (isValid)
-            {
-                try
-                {
-                    await Task.Delay(10);
-
-                    isAuthenticated = true;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"[SignIn] Error signing in: {ex}");
-                }
             }
             else
             {
-                IsValid = false;
+                await Application.Current.MainPage.DisplayAlert("Giriş Hatası", token, "OK");
             }
-
-            if (isAuthenticated)
-            {
-                _settingsService.AuthAccessToken = GlobalSetting.Instance.AuthToken;
-
-                await NavigationService.NavigateToAsync ("//Main/Catalog");
-            }
-
-            IsBusy = false;
-        }
-
-        private async Task SignInAsync()
-        {
-            IsBusy = true;
-
-            await Task.Delay(10);
-
-            LoginUrl = _identityService.CreateAuthorizationRequest();
-
-            IsValid = true;
-            IsLogin = true;
-            IsBusy = false;
-        }
-
-        private Task RegisterAsync()
-        {
-            return _openUrlService.OpenUrl(GlobalSetting.Instance.RegisterWebsite);
-        }
-
-        private void Logout()
-        {
-            var authIdToken = _settingsService.AuthIdToken;
-            var logoutRequest = _identityService.CreateLogoutRequest(authIdToken);
-
-            if (!string.IsNullOrEmpty(logoutRequest))
-            {
-                // Logout
-                LoginUrl = logoutRequest;
-            }
-
-            if (_settingsService.UseMocks)
-            {
-                _settingsService.AuthAccessToken = string.Empty;
-                _settingsService.AuthIdToken = string.Empty;
-            }
-
-            _settingsService.UseFakeLocation = false;
-        }
-
-        private async Task NavigateAsync(string url)
-        {
-            var unescapedUrl = System.Net.WebUtility.UrlDecode(url);
-
-            if (unescapedUrl.Equals(GlobalSetting.Instance.LogoutCallback))
-            {
-                _settingsService.AuthAccessToken = string.Empty;
-                _settingsService.AuthIdToken = string.Empty;
-                IsLogin = false;
-                LoginUrl = _identityService.CreateAuthorizationRequest();
-            }
-            else if (unescapedUrl.Contains(GlobalSetting.Instance.Callback))
-            {
-                var authResponse = new AuthorizeResponse(url);
-                if (!string.IsNullOrWhiteSpace(authResponse.Code))
-                {
-                    var userToken = await _identityService.GetTokenAsync(authResponse.Code);
-                    string accessToken = userToken.AccessToken;
-
-                    if (!string.IsNullOrWhiteSpace(accessToken))
-                    {
-                        _settingsService.AuthAccessToken = accessToken;
-                        _settingsService.AuthIdToken = authResponse.IdentityToken;
-                        await NavigationService.NavigateToAsync ("//Main/Catalog");
-                    }
-                }
-            }
-        }
-
-        private Task SettingsAsync()
-        {
-            return NavigationService.NavigateToAsync(
-                "Settings",
-                new Dictionary<string, string>
-                {
-                    { "reset", "true" },
-                });
-        }
-
-        private bool Validate()
-        {
-            bool isValidUser = ValidateUserName();
-            bool isValidPassword = ValidatePassword();
-
-            return isValidUser && isValidPassword;
-        }
-
-        private bool ValidateUserName()
-        {
-            return _userName.Validate();
-        }
-
-        private bool ValidatePassword()
-        {
-            return _password.Validate();
-        }
-
-        private void AddValidations()
-        {
-            _userName.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A username is required." });
-            _password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "A password is required." });
-        }
-
-        public void InvalidateMock()
-        {
-            IsMock = _settingsService.UseMocks;
         }
     }
 }
