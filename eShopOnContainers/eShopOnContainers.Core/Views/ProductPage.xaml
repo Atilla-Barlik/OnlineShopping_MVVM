@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eShopOnContainers.Core.Views.ProductPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Grid >
+                    <CollectionView 
+                                  x:Name="lstProducts"
+                                  BackgroundColor="#E0E0E0"
+                                  ItemsSource="{Binding SProducts}"
+                                  SelectionMode="Single"
+                                  EmptyView="No item"
+                                  >
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="6"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="2" BackgroundColor="#E0E0E0">
+
+                                    <Frame CornerRadius="20">
+                                        <StackLayout Orientation="Vertical">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Button Text="Fav"                                                       
+                                                        BorderColor="LightGray"
+                                                        CornerRadius="5"
+                                                        FontSize="Small"
+                                                        BackgroundColor="White"
+                                                        TextColor="Green"
+                                                        HeightRequest="40"
+                                                        WidthRequest="50"
+                                                        Command="{Binding Path=BindingContext.AddFavoriteCommand, Source={x:Reference lstProducts}}" CommandParameter="{Binding .}"
+                                                        />
+                                                <Button Text="+"                                                       
+                                                        BorderColor="LightGray"
+                                                        CornerRadius="5"
+                                                        FontSize="Small"
+                                                        BackgroundColor="White"
+                                                        TextColor="Black"
+                                                        HeightRequest="40"
+                                                        WidthRequest="45"
+                                                        Command="{Binding Path=BindingContext.AddCommand, Source={x:Reference lstProducts}}" CommandParameter="{Binding .}"
+                                                        />
+                                            </StackLayout>
+                                            <Image WidthRequest="60" HeightRequest="60"  Source="{Binding ImageSource}"/>
+                                            <Label VerticalOptions="Center" FontSize="Small" Text="{Binding Product}"/>
+                                            <Label VerticalOptions="Center" FontSize="Small" TextColor="Green" Text="{Binding Price}"/>
+
+
+
+                                        </StackLayout>
+                                    </Frame>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.MyCollectionSelectedCommand,Source={x:Reference lstProducts}}" CommandParameter="{Binding .}"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

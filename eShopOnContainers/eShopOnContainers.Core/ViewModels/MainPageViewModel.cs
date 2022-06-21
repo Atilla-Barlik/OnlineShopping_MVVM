@@ -1,5 +1,6 @@
 ﻿using eShopOnContainers.Core.Models;
 using eShopOnContainers.Core.ViewModels.Base;
+using eShopOnContainers.Core.Views;
 using MobileGUI.Services.ProductService;
 using System;
 using System.Collections.Generic;
@@ -58,7 +59,7 @@ namespace eShopOnContainers.Core.ViewModels
                 return;
             else
             {
-                // await Navigation.PushAsync(new ProductPage(selectedItem.ID));
+                await Navigation.PushAsync(new ProductPage(selectedItem.ID));
             }
         }
 

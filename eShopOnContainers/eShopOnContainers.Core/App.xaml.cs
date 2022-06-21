@@ -1,5 +1,6 @@
 ﻿using eShopOnContainers.Core;
 using eShopOnContainers.Core.Models;
+using eShopOnContainers.Core.Services;
 using eShopOnContainers.Core.Services.Location;
 using eShopOnContainers.Core.Services.ProductService;
 using eShopOnContainers.Core.Services.Settings;
@@ -25,9 +26,13 @@ namespace eShopOnContainers
         public App()
         {
             InitializeComponent();
+            Model.list = new ObservableCollection<SubProductItem>();
             ProductModel.list = new ObservableCollection<ProductItem>();
+            searchListModel.list = new ObservableCollection<SubProductItem>();
             ProductModel productModel = new ProductModel();
             ProductList productList = new ProductList();
+            ürünler p = new ürünler();
+            p.AddProducts();
             productList.AddProducts();
             InitApp();
 
@@ -102,7 +107,7 @@ namespace eShopOnContainers
                 e?.SetStatusBarColor(Color.White, true);
                 if (nav != null)
                 {
-                    nav.BarBackgroundColor = Color.White;
+                    nav.BarBackgroundColor = Color.Green;
                     nav.BarTextColor = Color.Black;
                 }
             }
