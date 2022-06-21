@@ -32,6 +32,6 @@
 
     <TabBar Route="Main">
         <ShellContent Title="MainPage" Route="MainPage" Icon="{StaticResource CatalogIconImageSource}" ContentTemplate="{DataTemplate views:MainPage}" />
-        <ShellContent Title="PROFILE" Route="Profile" Icon="{StaticResource ProfileIconImageSource}" ContentTemplate="{DataTemplate views:ProfileView}" />
+        <ShellContent Title="Sepet" Route="Sepet" Icon="{StaticResource ProfileIconImageSource}" ContentTemplate="{DataTemplate views:Sepetim}" />
     </TabBar>
 </Shell>

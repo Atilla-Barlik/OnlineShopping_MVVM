@@ -67,7 +67,7 @@ namespace eShopOnContainers.Core.ViewModels
         private async void AddItem(object obj)
         {
             var selectedItem = obj as SubProductItem;
-            //subProductService.AddBasket(selectedItem);
+            subProductService.AddBasket(selectedItem);
         }
 
         private async void AddFavorite(object obj)

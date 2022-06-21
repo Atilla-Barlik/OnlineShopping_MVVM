@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eShopOnContainers.Core.Views.Sepetim">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <StackLayout>
+                    <RefreshView Command="{Binding RefreshCommand}"
+                         IsRefreshing="{Binding IsRefreshing}">
+                        <ListView
+                                    x:Name="lstProducts"
+                                    SeparatorVisibility="Default"
+                                    HasUnevenRows="True"
+                                    ItemsSource="{Binding BasketList}">
+
+                            <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="10">
+                                        <Frame CornerRadius="20">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Image WidthRequest="125" Source="{Binding ImageSource}"/>
+                                                <StackLayout VerticalOptions="Center">
+                                                    <Label VerticalOptions="Center" FontSize="Large" Text="{Binding Product}"/>
+                                                    <Label VerticalOptions="Center" FontSize="Large" Text="{Binding Price}"/>
+
+                                                </StackLayout>
+
+                                            </StackLayout>
+
+                                        </Frame>
+
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+
+                            </ListView.ItemTemplate>
+
+                        </ListView>
+                    </RefreshView>
+
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+
+
+
+    </ContentPage.Content>
+</ContentPage>
