@@ -1,6 +1,7 @@
 ﻿using eShopOnContainers.Core.Models;
 using eShopOnContainers.Core.Services.SubProductService;
 using eShopOnContainers.Core.ViewModels.Base;
+using eShopOnContainers.Core.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -60,7 +61,7 @@ namespace eShopOnContainers.Core.ViewModels
                 return;
             else
             {
-                //await Navigation.PushAsync(new DetailPage(selectedItem));
+                await Navigation.PushAsync(new DetailPage(selectedItem));
             }
         }
 
