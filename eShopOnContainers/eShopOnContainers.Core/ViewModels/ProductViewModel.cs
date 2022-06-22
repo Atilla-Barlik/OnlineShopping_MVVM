@@ -73,7 +73,7 @@ namespace eShopOnContainers.Core.ViewModels
         private async void AddFavorite(object obj)
         {
             var selectedItem = obj as SubProductItem;
-            //subProductService.AddFavorite(selectedItem.Product);
+            subProductService.AddFavorite(selectedItem.Product);
         }
     }
 }

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eShopOnContainers.Core.Views.FavoritePage">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <RefreshView Command="{Binding RefreshCommand}"
+                         IsRefreshing="{Binding IsRefreshing}">
+                <ListView   x:Name="lstProducts"
+                        ItemsSource="{Binding FavoriteList}"
+                        IsPullToRefreshEnabled="True"
+                        BackgroundColor="#E0E0E0"
+                        SeparatorVisibility="Default"   
+                        HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Frame CornerRadius="20">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image WidthRequest="125"  Source="{Binding ImageSource}"/>
+                                            <StackLayout VerticalOptions="Center">
+                                                <Label VerticalOptions="Center" FontSize="Large" Text="{Binding Product}"/>
+                                                <Label VerticalOptions="Center" FontSize="Large"  Text="{Binding Price}"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
