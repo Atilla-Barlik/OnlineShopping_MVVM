@@ -26,7 +26,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Elma",
                     ID = "0",
                     Price = "10 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama = "Amasya Elması "
                 });
                 sProducts.Add(new SubProductItem
                 {
@@ -34,7 +35,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Armut",
                     ID = "0",
                     Price = "15 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama = "Deveci Armut"
                 });
 
                 sProducts.Add(new SubProductItem
@@ -43,7 +45,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Çilek",
                     ID = "0",
                     Price = "20 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama = "Mango Çileği"
                 });
 
                 sProducts.Add(new SubProductItem
@@ -52,7 +55,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Patates",
                     ID = "0",
                     Price = "10 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama = "Alaska Patates"
 
                 });
                 sProducts.Add(new SubProductItem
@@ -61,7 +65,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Soğan",
                     ID = "0",
                     Price = "5 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama = "Yemeklik Soğan"
 
                 });
 
@@ -71,7 +76,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Dana Pirzola",
                     ID = "1",
                     Price = "180 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama = "1500gr"
                 });
 
                 sProducts.Add(new SubProductItem
@@ -80,7 +86,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Dana Bonfile",
                     ID = "1",
                     Price = "263 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama = "1 KG"
                 });
                 sProducts.Add(new SubProductItem
                 {
@@ -88,15 +95,17 @@ namespace eShopOnContainers.Core.Services
                     Product = "Tavuk Piliç",
                     ID = "1",
                     Price = "46 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama = "Bütün Tavuk"
                 });
                 sProducts.Add(new SubProductItem
                 {
                     ImageSource = "https://cdn.cimri.io/market/260x260/dardanel-300-gr-jumbo-karides--_415505.jpg",
-                    Product = "Jumbo Karides",
+                    Product = "Karides",
                     ID = "1",
                     Price = "300 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama="Jumbo Karides"
                 });
                 sProducts.Add(new SubProductItem
                 {
@@ -104,7 +113,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Levrek",
                     ID = "1",
                     Price = "95 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama = "2 adet"
                 });
                 sProducts.Add(new SubProductItem
                 {
@@ -112,7 +122,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Su",
                     ID = "2",
                     Price = "1.25 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama="500 Ml"
                 });
                 sProducts.Add(new SubProductItem
                 {
@@ -120,7 +131,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Maden Suyu",
                     ID = "2",
                     Price = "10,90 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama="6X1 Limonlu BeyPazarı"
                 });
                 sProducts.Add(new SubProductItem
                 {
@@ -128,7 +140,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Kayısı Nektarı",
                     ID = "2",
                     Price = "8,50 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama="1 Litre"
                 });
                 sProducts.Add(new SubProductItem
                 {
@@ -136,7 +149,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Şeftali Nektarı",
                     ID = "2",
                     Price = "8,50 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama="1 Litre"
                 });
                 sProducts.Add(new SubProductItem
                 {
@@ -144,7 +158,8 @@ namespace eShopOnContainers.Core.Services
                     Product = "Coca-Cola",
                     ID = "2",
                     Price = "9 TL",
-                    Favorite = "0"
+                    Favorite = "0",
+                    Aciklama="1 Litre"
                 });
 
 

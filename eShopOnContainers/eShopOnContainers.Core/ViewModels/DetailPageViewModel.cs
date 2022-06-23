@@ -13,6 +13,7 @@ namespace eShopOnContainers.Core.ViewModels
         public string Product { get; set; }
 
         public string Favorite { get; set; }
+        public string Aciklama { get; set; }
 
 
         public DetailPageViewModel(SubProductItem selectedItemDetails)
@@ -23,6 +24,8 @@ namespace eShopOnContainers.Core.ViewModels
             Price = selectedItemDetails.Price;
             Product = selectedItemDetails.Product;
             Favorite = selectedItemDetails.Favorite;
+            Aciklama = selectedItemDetails.Aciklama;
+            
 
         }
     }

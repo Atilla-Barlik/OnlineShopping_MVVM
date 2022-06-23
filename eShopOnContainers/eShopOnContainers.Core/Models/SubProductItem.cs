@@ -41,5 +41,11 @@ namespace eShopOnContainers.Core.Models
             get { return favorite; }
             set { favorite = value; }
         }
+        private string aciklama;
+        public string Aciklama
+        {
+            get { return aciklama; }
+            set { aciklama = value; }
+        }
     }
 }

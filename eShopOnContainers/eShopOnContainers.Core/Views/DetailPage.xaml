@@ -12,7 +12,7 @@
                     <Image Source="{Binding ImageSource}" HeightRequest="150" WidthRequest="150"/>
                     <Label Text="{Binding Product}" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
                     <Label Text="{Binding Price}" HorizontalOptions="Center" TextColor="Green" FontAttributes="Bold"/>
-                    <Label Text="Ürün Açıklaması..."/>
+                    <Label Text="{Binding Aciklama}"/>
                 </StackLayout>
             </Frame>
         </StackLayout>
