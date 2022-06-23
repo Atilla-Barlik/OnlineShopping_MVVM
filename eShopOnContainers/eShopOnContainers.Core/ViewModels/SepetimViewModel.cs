@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace eShopOnContainers.Core.ViewModels
 {
-    internal class SepetimViewModel : ViewModelBase
+    public class SepetimViewModel : ViewModelBase
     {
         private bool isRefreshing;
         public bool IsRefreshing
