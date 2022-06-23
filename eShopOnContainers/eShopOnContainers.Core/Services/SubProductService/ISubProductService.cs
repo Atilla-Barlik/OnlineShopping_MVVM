@@ -12,5 +12,7 @@ namespace eShopOnContainers.Core.Services.SubProductService
         Task<ObservableCollection<SubProductItem>> AddBasket(SubProductItem subProductItem);
         Task<ObservableCollection<SubProductItem>> AddFavorite(string Product);
         Task<ObservableCollection<SubProductItem>> GetSubProduct(string id);
+
+        Task<ObservableCollection<SubProductItem>> ListScategori(string sCategoriNumber, string id);
     }
 }

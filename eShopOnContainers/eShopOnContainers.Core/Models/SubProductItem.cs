@@ -47,5 +47,12 @@ namespace eShopOnContainers.Core.Models
             get { return aciklama; }
             set { aciklama = value; }
         }
+
+        private string sCategori;
+        public string SCategori
+        {
+            get { return sCategori; }
+            set { sCategori = value; }
+        }
     }
 }

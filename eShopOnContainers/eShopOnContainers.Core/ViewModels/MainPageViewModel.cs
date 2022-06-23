@@ -59,7 +59,7 @@ namespace eShopOnContainers.Core.ViewModels
                 return;
             else
             {
-                await Navigation.PushAsync(new ProductPage(selectedItem.ID));
+                await Navigation.PushAsync(new ProductPage(selectedItem));
             }
         }
 

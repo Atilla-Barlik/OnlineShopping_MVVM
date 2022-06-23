@@ -4,7 +4,29 @@
              x:Class="eShopOnContainers.Core.Views.ProductPage">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="{Binding SubProduct1}"                                                       
+                                                        BorderColor="LightGray"
+                                                        CornerRadius="5"
+                                                        FontSize="Small"
+                                                        BackgroundColor="White"
+                                                        TextColor="Green"
+                                                        HeightRequest="40"
+                                                        WidthRequest="100"
+                                                        Command="{Binding listSubProduct1}"
+                                                        />
+                    <Button Text="{Binding SubProduct2}"                                                       
+                                                        BorderColor="LightGray"
+                                                        CornerRadius="5"
+                                                        FontSize="Small"
+                                                        BackgroundColor="White"
+                                                        TextColor="Green"
+                                                        HeightRequest="40"
+                                                        WidthRequest="100"
+                                                        Command="{Binding listSubProduct2}"
+                                                        />
+                </StackLayout>
                 <Grid >
                     <CollectionView 
                                   x:Name="lstProducts"

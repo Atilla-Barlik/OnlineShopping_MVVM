@@ -1,4 +1,5 @@
-﻿using eShopOnContainers.Core.ViewModels;
+﻿using eShopOnContainers.Core.Models;
+using eShopOnContainers.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace eShopOnContainers.Core.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductPage : ContentPage
     {
-        public ProductPage(object sender)
+        public ProductPage(ProductItem sender)
         {
             InitializeComponent();
             BindingContext = new ProductViewModel(sender);

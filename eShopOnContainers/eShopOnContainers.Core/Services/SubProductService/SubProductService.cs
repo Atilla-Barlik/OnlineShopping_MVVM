@@ -56,5 +56,18 @@ namespace eShopOnContainers.Core.Services.SubProductService
             App.Current.MainPage.DisplayAlert("Açıklama", Product + " favorilere eklendi.", "Ok");
             return null;
         }
+
+        public Task<ObservableCollection<SubProductItem>> ListScategori(string sCategoriNumber, string id)
+        {
+            sProducts = new ObservableCollection<SubProductItem>();
+            foreach (var item in searchListModel.list)
+            {
+                if (sCategoriNumber == item.SCategori && id == item.ID)
+                {
+                    sProducts.Add(item);
+                }
+            }
+            return Task.FromResult(sProducts);
+        }
     }
 }

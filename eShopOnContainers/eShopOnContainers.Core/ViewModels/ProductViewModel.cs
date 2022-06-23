@@ -20,6 +20,10 @@ namespace eShopOnContainers.Core.ViewModels
         public ICommand MyCollectionSelectedCommand { get; }
         public ICommand AddCommand { get; }
         public ICommand AddFavoriteCommand { get; }
+        public ICommand listSubProduct1 { get; }
+        public ICommand listSubProduct2 { get; }
+        public string SubProduct1 { get; set; }
+        public string SubProduct2 { get; set; }
         public ObservableCollection<SubProductItem> SProducts
         {
             get => sProducts;
@@ -32,19 +36,40 @@ namespace eShopOnContainers.Core.ViewModels
             }
 
         }
-
-        public ProductViewModel(object iD)
+        string id;
+        public ProductViewModel(ProductItem item)
         {
-            this.iD = iD;
+            this.iD = item.ID;
+            id = item.ID;
 
             getSubProductItems(iD.ToString());
+
+            SubProduct1 = item.SCategori1;
+            SubProduct2 = item.SCategori2;
 
             MyCollectionSelectedCommand = new Command(GenerateNavigations);
             AddCommand = new Command(AddItem);
             AddFavoriteCommand = new Command(AddFavorite);
+
+            listSubProduct1 = new Command(getScategori1Item);
+            listSubProduct2 = new Command(getScategori2Item);
         }
 
+        public async void getScategori1Item()
+        {
+            subProductService = new SubProductService();
 
+            SProducts.Clear();
+            SProducts = await subProductService.ListScategori("0", id);
+        }
+
+        public async void getScategori2Item()
+        {
+            subProductService = new SubProductService();
+
+            SProducts.Clear();
+            SProducts = await subProductService.ListScategori("1", id);
+        }
 
         public async void getSubProductItems(string id)
         {

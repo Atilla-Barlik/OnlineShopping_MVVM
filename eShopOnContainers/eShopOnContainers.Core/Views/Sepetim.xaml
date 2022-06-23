@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="eShopOnContainers.Core.Views.Sepetim">
     <ContentPage.Content>
-        <ScrollView>
+        
             <StackLayout>
 
-                <StackLayout>
+                
                     <RefreshView Command="{Binding RefreshCommand}"
                          IsRefreshing="{Binding IsRefreshing}">
                         <ListView
@@ -41,10 +41,10 @@
                         </ListView>
                     </RefreshView>
 
-                </StackLayout>
+                
 
             </StackLayout>
-        </ScrollView>
+        
 
 
 

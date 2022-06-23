@@ -24,19 +24,25 @@ namespace eShopOnContainers.Core.Services.ProductService
             {
                 ImageSource = "https://pluse.com.tr/images/thumb/1078.jpg",
                 Product = "Meyve Sebze",
-                ID = "0"
+                ID = "0",
+                SCategori1 = "Meyve",
+                SCategori2 = "Sebze"
             });
             ObProducts.Add(new ProductItem
             {
                 ImageSource = "https://sandalcisarkuteri.com/wp-content/uploads/2020/06/PASTIRMA-ANTR%C4%B0KOT-KG-300x300.jpg",
                 Product = "Et Tavuk Balık",
-                ID = "1"
+                ID = "1",
+                SCategori1 = "Kırmızı Et",
+                SCategori2 = "Beyaz Et"
             });
             ObProducts.Add(new ProductItem
             {
                 ImageSource = "https://www.festiva.com.tr/img/cms/category_73.jpg",
                 Product = "İçecek",
-                ID = "2"
+                ID = "2",
+                SCategori1 = "Gazsız İçecek",
+                SCategori2 = "Gazlı İçecek"
             });
             ObProducts.Add(new ProductItem
             {
