@@ -8,14 +8,10 @@ using System.Threading.Tasks;
 
 namespace eShopOnContainers.Core.Services.ProductService
 {
-<<<<<<< HEAD
-    public class ProductMockService : IProductService
-    {
 
-=======
     public class ProductMockService:IProductService
     {
->>>>>>> 9473f6e1482a6517e42ce78e9de88f7d9ed0deef
+
         private ObservableCollection<Carousel> MockCarouselItem = new ObservableCollection<Carousel>
         {
             new Carousel { ImageSource = "https://www.file.com.tr/uploads/file/mainslider/11-01-2022-14-47-04-slider.png" },
@@ -24,11 +20,9 @@ namespace eShopOnContainers.Core.Services.ProductService
 
         private ObservableCollection<ProductItem> MockProductItem = new ObservableCollection<ProductItem>
         {
-<<<<<<< HEAD
-            new ProductItem { 
-=======
+
             new ProductItem {
->>>>>>> 9473f6e1482a6517e42ce78e9de88f7d9ed0deef
+
                 ImageSource = "https://pluse.com.tr/images/thumb/1078.jpg",
                 Product = "Meyve Sebze",
                 ID = "0",
