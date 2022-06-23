@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eShopOnContainers.Core.Views.SearchPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar Placeholder="Search items..."
+                       CancelButtonColor="Green"
+                       PlaceholderColor="Green"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center"
+                       FontSize="Medium"
+                       FontAttributes="Italic" 
+                       SearchCommandParameter="{Binding .}"
+                       
+                       Text="{Binding SearchTerm}"
+                       SearchCommand="{Binding SearchCommand}"/>
+            <StackLayout>
+                <Grid>
+                    <CollectionView  x:Name="lstProducts"
+                                     BackgroundColor="#E0E0E0"
+                                     ItemsSource="{Binding SProducts}"
+                                     SelectionMode="Single"
+                                     EmptyView="Ürün Bulunamadı"
+                                     >
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="3" VerticalItemSpacing="6"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="2">
+                                    <Frame CornerRadius="20">
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout Orientation="Vertical" >
+                                                <Image WidthRequest="60" HeightRequest="60"  Source="{Binding ImageSource}"/>
+                                                <Label VerticalOptions="Center" FontAttributes="Bold" FontSize="Small" Text="{Binding Product}"/>
+                                                <Label VerticalOptions="Center" FontAttributes="Bold" FontSize="Small" TextColor="Green" Text="{Binding Price}"/>
+                                            </StackLayout>
+                                            <StackLayout VerticalOptions="Center" HorizontalOptions="EndAndExpand">
+                                                <Button Text="+"
+                                                        FontAttributes="Bold"
+                                                        BorderColor="LightGray"
+                                                        CornerRadius="5"
+                                                        FontSize="Small"
+                                                        BackgroundColor="White"
+                                                        TextColor="Black"
+                                                        HeightRequest="35"
+                                                        WidthRequest="35"
+                                                        CommandParameter="{Binding .}"
+                                                        VerticalOptions="Center"
+                                                        />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
